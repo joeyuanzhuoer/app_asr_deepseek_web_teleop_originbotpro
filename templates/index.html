@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turtlesim Web Teleop</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐢 Turtlesim Web Teleop</h1>
+            <p class="subtitle">Control your turtle via web interface</p>
+        </header>
+
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="status-label">ROS2:</span>
+                <span id="ros2-status" class="status-value">Checking...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Linear Speed:</span>
+                <span id="linear-speed" class="status-value">1.00 m/s</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Angular Speed:</span>
+                <span id="angular-speed" class="status-value">1.00 rad/s</span>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <div class="button-grid">
+                <!-- Top row -->
+                <button class="control-btn btn-forward-left" data-command="forward_left" title="Forward Left (u)">
+                    ↖<br><small>u</small>
+                </button>
+                <button class="control-btn btn-forward" data-command="forward" title="Forward (i)">
+                    ↑<br><small>i</small>
+                </button>
+                <button class="control-btn btn-forward-right" data-command="forward_right" title="Forward Right (o)">
+                    ↗<br><small>o</small>
+                </button>
+
+                <!-- Middle row -->
+                <button class="control-btn btn-left" data-command="left" title="Turn Left (j)">
+                    ←<br><small>j</small>
+                </button>
+                <button class="control-btn btn-stop" data-command="stop" title="Stop (k)">
+                    ⏹<br><small>k</small>
+                </button>
+                <button class="control-btn btn-right" data-command="right" title="Turn Right (l)">
+                    →<br><small>l</small>
+                </button>
+
+                <!-- Bottom row -->
+                <button class="control-btn btn-backward-left" data-command="backward_left" title="Backward Left (m)">
+                    ↙<br><small>m</small>
+                </button>
+                <button class="control-btn btn-backward" data-command="backward" title="Backward (,)">
+                    ↓<br><small>,</small>
+                </button>
+                <button class="control-btn btn-backward-right" data-command="backward_right" title="Backward Right (.)">
+                    ↘<br><small>.</small>
+                </button>
+            </div>
+
+            <div class="speed-controls">
+                <h3>Speed Controls</h3>
+                <div class="speed-buttons">
+                    <button class="speed-btn" data-command="increase_speed" title="Increase All Speeds (q)">
+                        ⬆ All<br><small>q</small>
+                    </button>
+                    <button class="speed-btn" data-command="decrease_speed" title="Decrease All Speeds (z)">
+                        ⬇ All<br><small>z</small>
+                    </button>
+                    <button class="speed-btn" data-command="increase_linear" title="Increase Linear (w)">
+                        ⬆ Linear<br><small>w</small>
+                    </button>
+                    <button class="speed-btn" data-command="decrease_linear" title="Decrease Linear (x)">
+                        ⬇ Linear<br><small>x</small>
+                    </button>
+                    <button class="speed-btn" data-command="increase_angular" title="Increase Angular (e)">
+                        ⬆ Angular<br><small>e</small>
+                    </button>
+                    <button class="speed-btn" data-command="decrease_angular" title="Decrease Angular (c)">
+                        ⬇ Angular<br><small>c</small>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-panel">
+            <h3>Instructions</h3>
+            <ul>
+                <li>Click buttons or use keyboard keys to control the turtle</li>
+                <li>Layout matches <code>teleop_twist_keyboard</code>:
+                    <pre>  u    i    o
+  j    k    l
+  m    ,    .</pre>
+                </li>
+                <li><strong>q/z</strong>: Increase/decrease all speeds by 10%</li>
+                <li><strong>w/x</strong>: Increase/decrease linear speed by 10%</li>
+                <li><strong>e/c</strong>: Increase/decrease angular speed by 10%</li>
+                <li><strong>k</strong> or <strong>Space</strong>: Stop immediately</li>
+            </ul>
+        </div>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
